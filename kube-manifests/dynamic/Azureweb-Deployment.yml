@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkinsweb-deployment-1
+  labels:
+    app: jenkinsweb-nginx-1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jenkinsweb-nginx-1
+  template:
+    metadata:
+      labels:
+        app: jenkinsweb-nginx-1
+    spec:
+      containers:
+        - name: jenkinsweb-nginx-1
+          image: azurelab2021acr.azurecr.io/jenkinswebdocker:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
